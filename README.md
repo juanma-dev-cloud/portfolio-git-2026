@@ -1,16 +1,33 @@
-# React + Vite
+=== api-padel — qué es ===
+Web con React + Vite que muestra el ranking masculino Master de la FIP (pádel).
+Los datos salen de la API pública de padelfip.com.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+=== cómo está hecho ===
+- React 19 (hooks: useState, useEffect, useMemo, useRef).
+- Estilos: Tailwind + index.css.
+- Datos: fetch al endpoint /es/wp-json/fip/v1/rankings/ con filtros (categoría Master, etc.).
+- En local, Vite hace proxy /padelfip → padelfip.com (vite.config.js) para evitar CORS.
+- pais.js: nombres de países en español y banderas (i18n-iso-countries + mapeos FIP).
+- App.jsx: lista paginada, filtros por nombre/ranking/país, extras (ej. himno para ESP).
 
-Currently, two official plugins are available:
+=== archivos importantes ===
+src/main.jsx     — monta la app
+src/App.jsx      — pantalla principal y lógica
+src/pais.js      — países y banderas
+vite.config.js   — proxy desarrollo
+package.json     — scripts: dev, build, doc:pdf
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+=== cómo arrancarlo ===
+cd api-padel
+npm install
+npm run dev
+Abrir http://localhost:5173/
 
-## React Compiler
+=== PDF con el código ===
+npm run doc:pdf  →  crea docs/CODIGO.pdf y docs/CODIGO.md (necesita Chrome en el PC).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+=== cómo documentar el código (ideas) ===
+1) Comentarios cortos solo donde no se entienda solo leyendo el código.
+2) Mantener este PROYECTO.txt (o un README) cuando cambies algo grande.
+3) Opcional: JSDoc encima de funciones raras (/** ... */) para que el editor las explique.
+4) Un CHANGELOG.txt de una línea por cambio importante si el proyecto crece.
