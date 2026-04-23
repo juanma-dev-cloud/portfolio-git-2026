@@ -23,7 +23,7 @@ const POR_PAGINA = 30
 const MARGEN = 5
 
 const PAIS_ESP = 'ESP'
-const HIMNO_SRC = '/himno-es.mp3'
+const HIMNO_SRC = `${import.meta.env.BASE_URL}himno-es.mp3`
 
 function itemsPagina(cur1, total) {
   // Margen de paginas
